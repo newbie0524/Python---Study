@@ -1,0 +1,24 @@
+A. 새 폴더를 GitHub에 처음 연동하기 (최초 1회)
+이건 폴더와 저장소를 처음 묶는 작업이라, 폴더마다 한 번씩만 합니다.
+준비: 먼저 GitHub 웹사이트에서 빈 저장소를 새로 만듭니다. 이때 README 같은 자동 생성 옵션은 체크하지 않는 게 충돌 없이 깔끔합니다. 만들고 나면 저장소 주소(https://github.com/...git)를 복사해 둡니다.
+VS Code에서 그 폴더 열기: File → Open Folder → 올릴 파일이 든 폴더 선택. (이걸 안 하면 엉뚱한 폴더에 올라가니 꼭 먼저 합니다.) 그다음 Terminal → New Terminal.
+연결 명령 (순서대로):
+git init
+echo ".DS_Store" > .gitignore
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin (복사한 저장소 주소)
+git push -u origin main
+각 줄의 뜻은, git init 폴더를 git 저장소로 만들기, .gitignore로 맥 잡파일 미리 제외, add . 전체 파일 담기, commit 기록으로 묶기, branch -M main 브랜치 이름을 GitHub와 맞추기, remote add origin 그 저장소 주소와 연결, push 전송.
+만약 push가 rejected로 거부되면 (저장소에 이미 뭔가 들어 있던 경우), 먼저 합치고 다시 push:
+git pull origin main --no-rebase --allow-unrelated-histories
+git push -u origin main
+이때 그림 같은 같은 이름 파일이 양쪽에 있으면 충돌이 날 수 있는데, 그건 CVD 때처럼 따로 해결이 필요합니다. 빈 저장소로 시작하면 이 단계 자체가 안 생깁니다.
+
+B. 이미 연동된 폴더에 변경사항 올리기 (매번)
+한 번 A를 끝낸 폴더는, 그 후로는 항상 이 세 줄이 전부입니다. 새 파일을 만들든 기존 파일을 고치든 똑같습니다.
+git add .
+git commit -m "변경 내용 설명"
+git push
+add . 바뀐 것 전부 담기, commit 기록으로 묶기(-m 뒤는 이번에 뭘 바꿨는지 설명, 한글 가능), push GitHub로 전송. 이게 끝입니다. init이나 remote add는 다시 하지 않습니다.
