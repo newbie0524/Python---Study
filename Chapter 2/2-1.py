@@ -18,13 +18,7 @@ print(a)
 
 a = "Life is too short"
 print(len(a))
-print(a[3])
-print(a[0])
-# INDEX는 0부터 시작한다.
-print(a[-1])
-# -는 역으로
-
-a = "Life is too short, You need Python"
-b = a[0] + a[1] + a[2] + a[3]
-print(b)
-
+# \n	문자열 안에서 줄을 바꿀 때 사용
+# \t	문자열 사이에 탭 간격을 줄 때 사용
+# \\	\를 그대로 표현할 때 사용
+# \'	작은따옴표(')를 그대로 표현할 때 사용
